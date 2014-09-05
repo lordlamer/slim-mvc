@@ -1,0 +1,24 @@
+{
+	"repositories": [
+	    {
+		"type": "composer",
+		"url": "https://packages.zendframework.com/"
+	    }
+	],
+
+	"require": {
+		"slim/slim": "2.*",
+		"slim/views": "0.*",
+		"twig/twig": "1.*",
+		"zendframework/zend-config": "2.3.*",
+		"zendframework/zend-mail": "2.3.*",
+		"zendframework/zend-db": "2.3.*",
+		"zendframework/zend-session": "2.3.*",
+		"zendframework/zend-eventmanager": "2.3.*",
+		"zendframework/zend-log": "2.3.*"
+	},
+
+	"autoload": {
+		"psr-4": {"Pim\\": "lib/"}
+	}
+}
