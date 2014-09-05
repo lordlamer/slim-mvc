@@ -49,6 +49,7 @@ class Application {
 		$this->initConfig();
 		$this->initDatabase();
 		$this->initLog();
+		$this->initSession();
 		$this->initLayout();
 		$this->initModules();
 	}
@@ -98,6 +99,14 @@ class Application {
 
 		// save log
 		$this->app->log = $logger;
+	}
+
+	/**
+	 * init session
+	 */
+	protected function initSession() {
+		session_cache_limiter(false);
+		session_start();
 	}
 
 	/**
