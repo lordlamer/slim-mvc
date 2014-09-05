@@ -19,6 +19,6 @@
 	},
 
 	"autoload": {
-		"psr-4": {"Pim\\": "lib/"}
+		"psr-4": {"IIM\\": "lib/"}
 	}
 }
