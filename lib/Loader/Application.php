@@ -45,6 +45,7 @@ class Application {
 	protected function bootstrap() {
 		$this->initSlim();
 		$this->initConfig();
+		$this->initDatabase();
 	}
 
 	/**
@@ -66,5 +67,16 @@ class Application {
 
 		// save config
 		$this->app->config = $config;
+	}
+
+	/**
+	 * bootstrap database
+	 */
+	protected function initDatabase() {
+		// get config
+		$config = $this->app->config;
+
+		// create database connection
+		$db = new \PDO($config->database->dsn, $config->database->user, $config->database->password);
 	}
 }
