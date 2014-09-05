@@ -1,0 +1,8 @@
+[database]
+dsn = "pgsql:host=localhost;dbname=phppim"
+user = "integra"
+password = "integra"
+
+[log]
+file = PROJECT_PATH "/data/log/pim.log"
+level = 100
