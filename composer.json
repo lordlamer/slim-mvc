@@ -1,4 +1,18 @@
 {
+	"name": "iim/pim",
+	"description": "Product Information Management System",
+	"keywords": ["product", "pim", "information"],
+	"homepage": "http://www.2im.de/pim",
+	"type": "application",
+	"license": "Commercial",
+	"authors": [
+		{
+			"name": "Frank Habermann",
+			"email": "habermann@2im.de",
+			"homepage": "http://www.2im.de"
+		}
+	],
+
 	"repositories": [
 	    {
 		"type": "composer",
