@@ -49,6 +49,7 @@ class Application {
 		$this->initConfig();
 		$this->initDatabase();
 		$this->initLog();
+		$this->initLayout();
 		$this->initModules();
 	}
 
@@ -100,6 +101,27 @@ class Application {
 	}
 
 	/**
+	 * init slim layout
+	 */
+	protected function initLayout() {
+		// get slim app
+		$app = $this->app;
+
+		//\Twig_Autoloader::register();
+		// twig filesystem loader
+		$loader = new \Twig_Loader_Filesystem();
+
+		// load twig with filesystem loader
+		$twig = new \Twig_Environment($loader, array(
+			'debug' => true,
+			'cache' => PROJECT_PATH . '/data/cache'
+		));
+
+		// save twig
+		$app->twig = $twig;
+	}
+
+	/**
 	 * bootstrap modules
 	 */
 	protected function initModules() {
@@ -108,6 +130,9 @@ class Application {
 
 		// get config
 		$config = $this->app->config;
+
+		// get twig
+		$twig = $app->twig;
 
 		// auth
 		$auth = function() {
@@ -125,13 +150,22 @@ class Application {
 				continue;
 
 			// module route dir
-			$routeDir = $config->base->module_path . $module . "/routes/";
+			$routeDir = $config->base->module_path . $module . "/route/";
 
 			// check if folder exists
 			if(is_dir($routeDir)) {
 				foreach (glob($routeDir . "/*.php") as $filename) {
 					require_once($filename);
 				}
+			}
+
+			// module view dir
+			$viewDir = $config->base->module_path . $module . "/view/";
+
+			// check if folder exists
+			if(is_dir($viewDir)) {
+				// add module view path
+				$twig->getLoader()->addPath($viewDir, $module);
 			}
 		}
 	}
