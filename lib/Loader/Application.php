@@ -109,6 +109,15 @@ class Application {
 		// get config
 		$config = $this->app->config;
 
+		// auth
+		$auth = function() {
+        		if (!(isset($_SESSION['authentificated']) && $_SESSION['authentificated'] === true)) {
+				$app = \Slim\Slim::getInstance();
+				$app->flash('error', 'Login required');
+				$app->redirect('./login');
+			}
+		};
+
 		// for each module
 		foreach($config->modules as $module => $enabled) {
 			// check if module is enabled
