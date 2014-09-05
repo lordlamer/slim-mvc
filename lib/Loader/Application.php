@@ -49,6 +49,7 @@ class Application {
 		$this->initConfig();
 		$this->initDatabase();
 		$this->initLog();
+		$this->initModules();
 	}
 
 	/**
@@ -96,5 +97,33 @@ class Application {
 
 		// save log
 		$this->app->log = $logger;
+	}
+
+	/**
+	 * bootstrap modules
+	 */
+	protected function initModules() {
+		// app
+		$app = $this->app;
+
+		// get config
+		$config = $this->app->config;
+
+		// for each module
+		foreach($config->modules as $module => $enabled) {
+			// check if module is enabled
+			if(!$enabled)
+				continue;
+
+			// module route dir
+			$routeDir = $config->base->module_path . $module . "/routes/";
+
+			// check if folder exists
+			if(is_dir($routeDir)) {
+				foreach (glob($routeDir . "/*.php") as $filename) {
+					require_once($filename);
+				}
+			}
+		}
 	}
 }
