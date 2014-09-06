@@ -126,6 +126,9 @@ class Application {
 			'cache' => PROJECT_PATH . '/data/cache'
 		));
 
+		// add global base href
+		$twig->addGlobal('base_href', $app->config->base->href);
+
 		// save twig
 		$app->twig = $twig;
 	}
@@ -142,15 +145,6 @@ class Application {
 
 		// get twig
 		$twig = $app->twig;
-
-		// auth
-		$auth = function() {
-        		if (!(isset($_SESSION['authentificated']) && $_SESSION['authentificated'] === true)) {
-				$app = \Slim\Slim::getInstance();
-				$app->flash('error', 'Login required');
-				$app->redirect('./login');
-			}
-		};
 
 		// for each module
 		foreach($config->modules as $module => $enabled) {
