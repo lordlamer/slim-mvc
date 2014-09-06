@@ -25,12 +25,7 @@
 		"slim/views": "0.*",
 		"twig/twig": "1.*",
 		"monolog/monolog": "1.*",
-		"zendframework/zend-config": "2.3.*",
-		"zendframework/zend-mail": "2.3.*",
-		"zendframework/zend-db": "2.3.*",
-		"zendframework/zend-session": "2.3.*",
-		"zendframework/zend-eventmanager": "2.3.*",
-		"zendframework/zend-log": "2.3.*"
+		"zendframework/zend-config": "2.3.*"
 	},
 
 	"autoload": {
