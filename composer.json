@@ -25,7 +25,8 @@
 		"slim/views": "0.*",
 		"twig/twig": "1.*",
 		"monolog/monolog": "1.*",
-		"zendframework/zend-config": "2.3.*"
+		"zendframework/zend-config": "2.3.*",
+		"zendframework/zend-loader": "2.3.*"
 	},
 
 	"autoload": {

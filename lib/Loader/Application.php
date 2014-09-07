@@ -146,11 +146,21 @@ class Application {
 		// get twig
 		$twig = $app->twig;
 
+		// autoloader
+		$loader = new \Zend\Loader\StandardAutoloader();
+
 		// for each module
 		foreach($config->modules as $module => $enabled) {
 			// check if module is enabled
 			if(!$enabled)
 				continue;
+
+			// autoload dir
+			$autoloadDir = $config->base->module_path . $module . "/src/";
+
+			// register module namespace
+			if(is_dir($autoloadDir))
+				$loader->registerNamespace($module,  $autoloadDir);
 
 			// module route dir
 			$routeDir = $config->base->module_path . $module . "/route/";
@@ -171,5 +181,7 @@ class Application {
 				$twig->getLoader()->addPath($viewDir, $module);
 			}
 		}
+
+		$loader->register();
 	}
 }
