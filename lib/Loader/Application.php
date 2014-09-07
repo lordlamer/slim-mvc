@@ -155,30 +155,41 @@ class Application {
 			if(!$enabled)
 				continue;
 
-			// autoload dir
-			$autoloadDir = $config->base->module_path . $module . "/src/";
+			require_once($config->base->module_path . $module . "/Module.php");
+			$m = "\\$module\\Module";
+			$m = new $m;
 
-			// register module namespace
-			if(is_dir($autoloadDir))
-				$loader->registerNamespace($module,  $autoloadDir);
+			// autoloader
+			if(method_exists($m, 'getAutoloaderConfig')) {
+				$cfg = $m->getAutoloaderConfig();
 
-			// module route dir
-			$routeDir = $config->base->module_path . $module . "/route/";
-
-			// check if folder exists
-			if(is_dir($routeDir)) {
-				foreach (glob($routeDir . "/*.php") as $filename) {
-					require_once($filename);
+				// register module namespace
+				foreach($cfg as $key => $value) {
+					$loader->registerNamespace($key,  $value);
 				}
 			}
 
-			// module view dir
-			$viewDir = $config->base->module_path . $module . "/view/";
+			// routes
+			if(method_exists($m, 'getRouterConfig')) {
+				$cfg = $m->getRouterConfig();
 
-			// check if folder exists
-			if(is_dir($viewDir)) {
-				// add module view path
-				$twig->getLoader()->addPath($viewDir, $module);
+				// load routes
+				foreach($cfg as $value) {
+					foreach (glob($value . "/*.php") as $filename) {
+						require_once($filename);
+					}
+				}
+			}
+
+			// views
+			if(method_exists($m, 'getViewConfig')) {
+				$cfg = $m->getViewConfig();
+
+				// register views
+				foreach($cfg as $key => $value) {
+					// add module view path
+					$twig->getLoader()->addPath($value, $key);
+				}
 			}
 		}
 
