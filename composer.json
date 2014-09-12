@@ -26,7 +26,9 @@
 		"twig/twig": "1.*",
 		"monolog/monolog": "1.*",
 		"zendframework/zend-config": "2.3.*",
-		"zendframework/zend-loader": "2.3.*"
+		"zendframework/zend-loader": "2.3.*",
+		"zendframework/zend-permissions-acl": "2.3.*",
+		"zendframework/zend-navigation": "2.3.*"
 	},
 
 	"autoload": {
