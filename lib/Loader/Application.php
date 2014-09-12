@@ -149,6 +149,9 @@ class Application {
 		// autoloader
 		$loader = new \Zend\Loader\StandardAutoloader();
 
+                // navigation
+                $navigation = array();
+                
 		// for each module
 		foreach($config->modules as $module => $enabled) {
 			// check if module is enabled
@@ -191,8 +194,21 @@ class Application {
 					$twig->getLoader()->addPath($value, $key);
 				}
 			}
+
+			// navigation
+			if(method_exists($m, 'getNavigationConfig')) {
+                                // get navigation config
+				$cfg = $m->getNavigationConfig();
+
+                                // merge navigation recursiv
+				$navigation = array_merge_recursive($navigation, $cfg);
+			}
 		}
 
+                // register namespaces
 		$loader->register();
+                
+                // save navigation
+                $app->navigation = $navigation;
 	}
 }
