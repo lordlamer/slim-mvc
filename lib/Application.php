@@ -1,6 +1,6 @@
 <?php
 
-namespace IIM\Loader;
+namespace SlimMVC;
 
 use Zend\Config\Reader\Ini as ConfigReader;
 use Zend\Config\Config;
@@ -94,7 +94,7 @@ class Application {
 		$config = $this->app->config;
 
 		// init logger
-		$logger = new Logger('PIM');
+		$logger = new Logger($config->log->ident);
 		$logger->pushHandler(new StreamHandler($config->log->file, $config->log->level));
 
 		// save log
@@ -151,7 +151,7 @@ class Application {
 
                 // navigation
                 $navigation = array();
-                
+
 		// for each module
 		foreach($config->modules as $module => $enabled) {
 			// check if module is enabled
@@ -207,7 +207,7 @@ class Application {
 
                 // register namespaces
 		$loader->register();
-                
+
                 // save navigation
                 $app->navigation = $navigation;
 	}

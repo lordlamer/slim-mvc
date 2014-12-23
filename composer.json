@@ -1,15 +1,15 @@
 {
-	"name": "iim/pim",
-	"description": "Product Information Management System",
-	"keywords": ["product", "pim", "information"],
-	"homepage": "http://www.2im.de/pim",
+	"name": "lordlamer/slim-mvc",
+	"description": "Slim MVC Application",
+	"keywords": ["slim", "mvc", "modul"],
+	"homepage": "http://www.lordlamer.de",
 	"type": "application",
-	"license": "Commercial",
+	"license": "BSD",
 	"authors": [
 		{
 			"name": "Frank Habermann",
-			"email": "habermann@2im.de",
-			"homepage": "http://www.2im.de"
+			"email": "lordlamer@lordlamer.de",
+			"homepage": "http://www.lordlamer.de"
 		}
 	],
 
@@ -25,13 +25,15 @@
 		"slim/views": "0.*",
 		"twig/twig": "1.*",
 		"monolog/monolog": "1.*",
+		"fabfuel/prophiler": "~1.0",
 		"zendframework/zend-config": "2.3.*",
 		"zendframework/zend-loader": "2.3.*",
+		"zendframework/zend-http": "2.3.*",
 		"zendframework/zend-permissions-acl": "2.3.*",
 		"zendframework/zend-navigation": "2.3.*"
 	},
 
 	"autoload": {
-		"psr-4": {"IIM\\": "lib/"}
+		"psr-4": {"SlimMVC\\": "lib/"}
 	}
 }
