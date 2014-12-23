@@ -1,2 +1,5 @@
 SlimMVC Application
 ===================
+
+Quick Start
+-----------
