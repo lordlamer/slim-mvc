@@ -1,13 +1,12 @@
 <?php
 
 /**
- * PIM
+ * SlimMVC
  *
- * PIM Desc
+ * SlimMVC Desc
  *
- * @author Frank Habermann <habermann@2im.de>
- * @date 20140617
- * @company Integra Internet Management GmbH
+ * @author Frank Habermann <lordlamer@lordlamer.de>
+ * @date 20141223
  */
 
 // Define path to project directory
@@ -18,7 +17,7 @@ defined('PROJECT_PATH')
 require PROJECT_PATH . '/vendor/autoload.php';
 
 // init app
-$app = new \IIM\Loader\Application(PROJECT_PATH . '/config/app.ini');
+$app = new \SlimMVC\Application(PROJECT_PATH . '/config/app.ini');
 
 // run auth app
 $app->run();
