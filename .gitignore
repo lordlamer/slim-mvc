@@ -1,5 +1,5 @@
 config/app.ini
 /vendor
 composer.lock
-data/log/pim.log
+data/log/
 data/cache/
