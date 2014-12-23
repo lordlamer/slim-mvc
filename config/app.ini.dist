@@ -1,8 +1,12 @@
 [database]
-dsn = "pgsql:host=localhost;dbname=phppim"
-user = "integra"
-password = "integra"
+dsn = "mysql:host=localhost;dbname=slimmvc"
+user = "user"
+password = "password"
 
 [log]
-file = PROJECT_PATH "/data/log/pim.log"
+file = PROJECT_PATH "/data/log/slimmvc.log"
 level = 100
+ident = slimmvc
+
+[modules]
+Demo = true
