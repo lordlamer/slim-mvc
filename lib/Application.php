@@ -77,6 +77,9 @@ class Application {
 		// app
 		$app = $this->app;
 
+		// run hook slim.mvc.start
+		$app->applyHook('slim.mvc.start');
+
                 // navigation
                 $navigation = array();
 
@@ -142,5 +145,8 @@ class Application {
 
                 // save navigation
                 $app->container->singletin('navigation', $navigation);
+
+		// run hook slim.mvc.ready
+		$app->applyHook('slim.mvc.ready');
 	}
 }
