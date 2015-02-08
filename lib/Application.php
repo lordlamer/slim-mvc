@@ -77,6 +77,9 @@ class Application {
 		// app
 		$app = $this->app;
 
+		// loader
+		$loader = $this->loader;
+
 		// run hook slim.mvc.start
 		$app->applyHook('slim.mvc.start');
 
