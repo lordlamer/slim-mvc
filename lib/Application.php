@@ -138,6 +138,18 @@ class Application {
                                 // merge navigation recursiv
 				$navigation = array_merge_recursive($navigation, $cfg);
 			}
+
+			// hooks
+			if(method_exists($m, 'getHookConfig')) {
+				$cfg = $m->getHookConfig();
+
+				// load routes
+				foreach($cfg as $value) {
+					foreach (glob($value . "/*.php") as $filename) {
+						require_once($filename);
+					}
+				}
+			}
 		}
 
                 // register namespaces
@@ -148,17 +160,6 @@ class Application {
 
                 // save navigation
                 $app->navigation = $navigation;
-
-		// for each module run init function if exists
-		foreach($this->modules as $module) {
-			$m = "\\$module\\Module";
-			$m = new $m;
-
-			// check init
-			if(method_exists($m, 'init')) {
-				$m->init($app);
-			}
-		}
 
 		// run hook slim.mvc.ready
 		$app->applyHook('slim.mvc.ready');
