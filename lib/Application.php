@@ -149,6 +149,17 @@ class Application {
                 // save navigation
                 $app->navigation = $navigation;
 
+		// for each module run init function if exists
+		foreach($this->modules as $module) {
+			$m = "\\$module\\Module";
+			$m = new $m;
+
+			// check init
+			if(method_exists($m, 'init')) {
+				$m->init($app);
+			}
+		}
+
 		// run hook slim.mvc.ready
 		$app->applyHook('slim.mvc.ready');
 	}
