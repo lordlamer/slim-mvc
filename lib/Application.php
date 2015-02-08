@@ -147,7 +147,7 @@ class Application {
 		$app->container->singleton('viewModules', $viewModules);
 
                 // save navigation
-                $app->container->singletin('navigation', $navigation);
+                $app->container->singleton('navigation', $navigation);
 
 		// run hook slim.mvc.ready
 		$app->applyHook('slim.mvc.ready');
