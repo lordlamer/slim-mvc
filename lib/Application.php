@@ -88,7 +88,7 @@ class Application {
 
 		// for each module
 		foreach($this->modules as $module) {
-			require_once($this->modulePath . $module . "/Module.php");
+			require_once($this->modulePath . '/' . $module . "/Module.php");
 			$m = "\\$module\\Module";
 			$m = new $m;
 
