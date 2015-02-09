@@ -7,11 +7,6 @@ namespace SlimMVC;
  */
 class Application {
 	/**
-	 * @var $loader
-	 */
-	protected $loader = null;
-
-	/**
 	 * @var $modulePath
 	 */
 	protected $modulePath = null;
@@ -29,14 +24,10 @@ class Application {
 	/**
 	 * constructor
 	 *
-	 * @param string $loader Composer Autoloader
 	 * @param string $modulePath path with modules
 	 * @param array $modules array with modules to load
 	 */
-	public function __construct($loader, $modulePath, $modules) {
-		// loader
-		$this->loader = $loader;
-
+	public function __construct($modulePath, $modules) {
 		// module path
 		$this->modulePath = $modulePath;
 
@@ -77,9 +68,6 @@ class Application {
 		// app
 		$app = $this->app;
 
-		// loader
-		$loader = $this->loader;
-
 		// run hook slim.mvc.start
 		$app->applyHook('slim.mvc.start');
 
@@ -88,6 +76,9 @@ class Application {
 
 		// view paths
 		$viewModules = array();
+
+		// loader
+		$loader = new \Zend\Loader\StandardAutoloader();
 
 		// for each module
 		foreach($this->modules as $module) {
@@ -100,9 +91,8 @@ class Application {
 				$cfg = $m->getAutoloaderConfig();
 
 				// register module namespace
-				// @see: https://getcomposer.org/doc/01-basic-usage.md#autoloading
 				foreach($cfg as $key => $value) {
-					$loader->add($key,  $value);
+					$loader->registerNamespace($key, $value);
 				}
 			}
 
