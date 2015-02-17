@@ -94,6 +94,9 @@ class Application {
 				foreach($cfg as $key => $value) {
 					$loader->registerNamespace($key, $value);
 				}
+
+				// register namespaces
+				$loader->register();
 			}
 
 			// routes
@@ -141,9 +144,6 @@ class Application {
 				}
 			}
 		}
-
-                // register namespaces
-		$loader->register();
 
 		// save view modules
 		$app->viewModules = $viewModules;
