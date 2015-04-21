@@ -22,7 +22,7 @@
 
 	"require": {
 		"slim/slim": "2.*",
-		"zendframework/zend-loader": "2.3.*"
+		"zendframework/zend-loader": "2.*"
 	},
 
 	"autoload": {
