@@ -63,7 +63,7 @@ class Application
     protected function initSlim()
     {
         // init slim app
-        $this->app = new \Slim\Slim();
+        $this->app = new \Slim\App();
     }
 
     /**
@@ -75,7 +75,7 @@ class Application
         $app = $this->app;
 
         // run hook slim.mvc.start
-        $app->applyHook('slim.mvc.start');
+        //$app->applyHook('slim.mvc.start');
 
         // navigation
         $navigation = array();
@@ -158,6 +158,6 @@ class Application
         $app->navigation = $navigation;
 
         // run hook slim.mvc.ready
-        $app->applyHook('slim.mvc.ready');
+        //$app->applyHook('slim.mvc.ready');
     }
 }
