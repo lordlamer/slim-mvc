@@ -62,8 +62,11 @@ class Application
      */
     protected function initSlim()
     {
+	// init di container
+	$container = new \Slim\Container;
+
         // init slim app
-        $this->app = new \Slim\App();
+        $this->app = new \Slim\App($container);
     }
 
     /**
@@ -74,8 +77,8 @@ class Application
         // app
         $app = $this->app;
 
-        // run hook slim.mvc.start
-        //$app->applyHook('slim.mvc.start');
+	// di container
+	$container = $app->getContainer();
 
         // navigation
         $navigation = array();
@@ -138,9 +141,9 @@ class Application
                 $navigation = array_merge_recursive($navigation, $cfg);
             }
 
-            // hooks
-            if (method_exists($m, 'getHookConfig')) {
-                $cfg = $m->getHookConfig();
+            // middleware
+            if (method_exists($m, 'getMiddlewareConfig')) {
+                $cfg = $m->getMiddlewareConfig();
 
                 // load routes
                 foreach ($cfg as $value) {
@@ -152,12 +155,9 @@ class Application
         }
 
         // save view modules
-        $app->viewModules = $viewModules;
+        $container->viewModules = $viewModules;
 
         // save navigation
-        $app->navigation = $navigation;
-
-        // run hook slim.mvc.ready
-        //$app->applyHook('slim.mvc.ready');
+        $container->navigation = $navigation;
     }
 }
